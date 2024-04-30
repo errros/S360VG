@@ -29,3 +29,7 @@ To create the environment for our model, we use the saliency map from [EML-NET-S
 Green points represents  48 real users head fixations from dataset presented in [dataset](https://wuchlei-thu.github.io/) , Red points represents synthetic generated users with our approach. 
 for full generated video (https://www.youtube.com/watch?v=OjzbImTvgNQ).
 we share the data generated for the 3 samples videos in the following link () 
+
+
+# Contact
+w.abdallaoui@esi-sba.dz
