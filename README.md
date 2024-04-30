@@ -22,3 +22,8 @@ The surge in popularity of 360° video streaming has driven the need for optimiz
 # Saliency environment
 To create the environment for our model, we use the saliency map from [EML-NET-Saliency](https://arxiv.org/abs/1805.01047) research paper, because of its lightness and accuracy in highlighting the regions of interest (ROI). In our experimentation we generated saliency videos based on following implementation [EML-NET-Saliency Implementation](https://github.com/SenJia/EML-NET-Saliency)
 
+# Demo
+![The last of Rhino](demo.gif). 
+Green points represents  48 real users head fixations from dataset presented in [dataset](https://wuchlei-thu.github.io/) , Red points represents synthetic generated users with our approach. 
+for full generated video (https://www.youtube.com/watch?v=OjzbImTvgNQ).
+we share the data generated for the 3 samples videos in the following link () 
