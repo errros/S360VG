@@ -33,3 +33,5 @@ we share the data generated for the 3 samples videos in the following link ()
 
 # Contact
 w.abdallaoui@esi-sba.dz
+
+Ahmed.Saadallah@u-bourgogne.fr
