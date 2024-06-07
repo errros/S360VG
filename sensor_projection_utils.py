@@ -161,62 +161,38 @@ def equirect_point_to_pixels(p, resolution):
 
     return [x_pixel, y_pixel]
 
+#
+# def pixels_to_equirect_point(pixels, resolution):
+#     x_pixel, y_pixel = pixels[0], pixels[1]
+#
+#     x = (resolution[0] - x_pixel) / resolution[0]
+#     x = x * (2 * np.pi) - np.pi * 3 / 2
+#
+#     y = y_pixel / resolution[1]
+#     y = y * np.pi - np.pi / 2
+#
+#     return [x, y]
 
-def pixels_to_equirect_point(pixels, resolution):
-    x_pixel, y_pixel = pixels[0], pixels[1]
+def pixels_to_equirect_point(p_pixel, resolution):
+    x_pixel, y_pixel = p_pixel[0], p_pixel[1]
 
-    x = (resolution[0] - x_pixel) / resolution[0]
-    x = x * (2 * np.pi) - np.pi * 3 / 2
+    # Handle potential negative x_pixel values (due to wrapping)
+    if x_pixel < 0:
+        x_pixel += resolution[0]
 
+    # Calculate x
+    x = 1 - (x_pixel / resolution[0])
+    x = x if x >= 0.25 else (x + 1)   # Adjust for wrapping if x falls below 0.25
+
+    # Calculate y
     y = y_pixel / resolution[1]
-    y = y * np.pi - np.pi / 2
 
     return [x, y]
 
 
-#
-# q1 = [0.643,0.032,0.763,-0.047]
-# print(f'original quaternion <{q1}>')
-# direct_vect1 = direction_vect_from_quaternion_in_cartesian(q1)
-# sph = vect_cartesian_to_spherical(direct_vect1)
-# print(f'direction vector<{direct_vect1}>')
-# q_inv1 = quaternion_from_direction_vect_cartesian(direct_vect1)
-# q_inv2 = quaternion_from_direction_vect_spherical(sph)
-# print(f'inverse quaternion <{q_inv1}>')
-# print(f'inverse quaternion from sph <{q_inv2}>')
-# print(np.abs(np.dot(q_inv1, q1)))
-# print(np.abs(np.dot(q_inv2, q1)))
-#
-#
-# print('------------------------------')
-#
-#
-# q1 = [0.536,0.058,0.833,-0.127]
-# print(f'original quaternion <{q1}>')
-# direct_vect1 = direction_vect_from_quaternion_in_cartesian(q1)
-# sph = vect_cartesian_to_spherical(direct_vect1)
-# print(f'direction vector<{direct_vect1}>')
-# q_inv1 = quaternion_from_direction_vect_cartesian(direct_vect1)
-# q_inv2 = quaternion_from_direction_vect_spherical(sph)
-# print(f'inverse quaternion <{q_inv1}>')
-# print(f'inverse quaternion from sph <{q_inv2}>')
-# print(np.abs(np.dot(q_inv1, q1)))
-# print(np.abs(np.dot(q_inv2, q1)))
-#
-# print('------------------------------')
-#
-#
-# q1 = [-0.149,-0.014,0.987,-0.054]
-# print(f'original quaternion <{q1}>')
-# direct_vect1 = direction_vect_from_quaternion_in_cartesian(q1)
-# sph = vect_cartesian_to_spherical(direct_vect1)
-# print(f'direction vector<{direct_vect1}>')
-# q_inv1 = quaternion_from_direction_vect_cartesian(direct_vect1)
-# q_inv2 = quaternion_from_direction_vect_spherical(sph)
-# print(f'inverse quaternion <{q_inv1}>')
-# print(f'inverse quaternion from sph <{q_inv2}>')
-# print(np.abs(np.dot(q_inv1, q1)))
-# print(np.abs(np.dot(q_inv2, q1)))
 
+x,y = pixels_to_equirect_point([2100,300],[2880,1440])
+print(f'x = {x} , y = {y}')
+x_pixel , y_pixel = equirect_point_to_pixels([x,y],[2880,1440])
 
-
+print(f'x_pixel = {x_pixel} , y_pixel = {y_pixel}')
